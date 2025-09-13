@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     MyCartDetailsComponent,
     HomeComponent,
     NavBarComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     HttpClientModule
   ],
   providers: [EcHttpClient,
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
