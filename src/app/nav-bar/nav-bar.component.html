@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">My Colors</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" aria-controls="navbarNav" 
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link active" [routerLink]="'/home'">Home</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="'/products'">Shop</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="'/my-cart-details'">Cart</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="'/orders'">My Orders</a></li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" [routerLink]="'/login'">Login</a>
+        </li> -->
+      </ul>
+
+      <!-- Logout icon aligned with nav links -->
+      <div class="d-flex align-items-center ms-2">
+        <button class="btn btn-outline-light btn-sm" (click)="logout()" title="Logout">
+          <i class="bi bi-box-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

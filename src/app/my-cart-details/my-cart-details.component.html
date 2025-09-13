@@ -1,0 +1,69 @@
+<div *ngIf="alertMessage" 
+      class="alert" 
+      [ngClass]="alertType" 
+      role="alert">
+  {{ alertMessage }}
+</div>
+
+<div class="container mt-4">
+
+  <!-- Products List -->
+  <div class="row" *ngIf="products.length > 0; else emptyCart">
+    <div class="col-md-4 mb-4" *ngFor="let product of products">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.product_name }}</h5>
+          <p class="fw-bold">$ {{ product.product_price }}</p>
+
+          <!-- Cart Quantity -->
+          <div>
+            <p class="text-muted mb-2">
+              In Cart: <span class="fw-bold">{{ product.usercart_qty }}</span>
+            </p>
+            <div class="btn-group" role="group">
+              <button class="btn btn-sm btn-outline-danger" (click)="decreaseQty(product)">-</button>
+              <button class="btn btn-sm btn-outline-success" (click)="increaseQty(product)">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stock Warning Banner -->
+  <div class="row" *ngIf="stockWarnings && stockWarnings.length > 0">
+    <div class="col-12">
+      <div class="alert alert-warning text-center shadow-sm mt-3 p-3 rounded">
+        <ul class="mb-0">
+          <li *ngFor="let warning of stockWarnings">{{ warning }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Summary -->
+  <div class="row" *ngIf="products.length > 0">
+    <div class="col-12">
+      <div class="alert alert-info text-center shadow-sm mt-4 p-4 rounded">
+        <h4 class="mb-3">🛒 Cart Summary</h4>
+        <p class="mb-1">Total Items: <span class="fw-bold">{{ getTotalItems() }}</span></p>
+        <p class="mb-3 fs-5">Total Amount: <span class="fw-bold text-success">$ {{ getTotalAmount() }}</span></p>
+
+        <!-- Checkout Button -->
+        <button class="btn btn-success btn-lg px-5" (click)="checkout()">
+          Proceed to Checkout
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty Cart Template -->
+  <ng-template #emptyCart>
+    <div class="row">
+      <div class="col-12">
+        <h3 class="text-center mt-5 text-muted">Your cart is empty 🛒</h3>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,38 @@
+<!-- Bootstrap Alert -->
+<div *ngIf="alertMessage" 
+      class="alert" 
+      [ngClass]="alertType" 
+      role="alert">
+  {{ alertMessage }}
+</div>
+
+<!-- product-list.component.html -->
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let product of products">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ product.product_name }}</h5>
+          <p class="fw-bold">$ {{ product.product_price }}</p>
+          <!-- Show remaining stock -->
+          <p class="text-muted mb-0">
+            Stock: <span class="fw-bold">{{ product.product_stock }}</span>
+          </p>
+        </div>
+        <div class="card-footer text-center">
+          <!-- Show Add to Cart button only if stock > 0 -->
+          <button *ngIf="product.product_stock > 0; else outOfStock"
+                  class="btn btn-primary w-100"
+                  (click)="addToCart(product)">
+            Add to Cart
+          </button>
+
+          <!-- Out of Stock Template -->
+          <ng-template #outOfStock>
+            <span class="text-danger fw-bold">Out of Stock</span>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
